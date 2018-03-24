@@ -1,9 +1,10 @@
 class Node
   attr_reader :children,
-              :character
+              :character,
+              :parent
 
 
-  def initialize(character = "") #should default be ""? is_end = false?
+  def initialize(character = "") #should default be ""? is_end = false? parent = nil
     @character = character
     @children = []
     @is_end = false

@@ -19,6 +19,12 @@ class NodeTest < MiniTest::Test
     # binding.pry
     actual = node.children[0].character
     assert_equal "A", actual
+    node.insert("B")
+    actual = node.children[1].character
+    assert_equal "B", actual
+    actual = node.children.count
+    assert_equal 2, actual
+
   end
 
 

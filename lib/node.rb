@@ -3,7 +3,7 @@ class Node
               :character
 
 
-  def initialize(character = "") #should default be ""?
+  def initialize(character = "") #should default be ""? is_end = false?
     @character = character
     @children = []
     @is_end = false
@@ -11,7 +11,7 @@ class Node
     @weight = 0
   end
 
-  def insert(character)
+  def insert(character) #is_end = false?
     node = Node.new(character)
     @children << node
   end

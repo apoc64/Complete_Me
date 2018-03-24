@@ -4,17 +4,17 @@ class Node
               :parent
 
 
-  def initialize(character = "") #should default be ""? is_end = false? parent = nil
+  def initialize(character = "", parent = nil) #should default be ""? is_end = false? parent = nil
     @character = character
     @children = []
     @is_end = false
-    @parent = nil
+    @parent = parent
     @weight = 0
   end
 
   def insert(character) #is_end = false?
     if children_dont_have_character(character)
-      node = Node.new(character)
+      node = Node.new(character, self)
       @children << node
     end
   end

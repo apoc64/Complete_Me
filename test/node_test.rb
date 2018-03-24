@@ -70,7 +70,7 @@ class NodeTest < MiniTest::Test
     child = node.children[0]
     assert_equal node, child.parent
   end
-  
+
   def test_node_can_be_end_of_word
     node = Node.new
     node.insert("A")
@@ -80,6 +80,16 @@ class NodeTest < MiniTest::Test
     node.insert("B", true)
     actual = node.children[1].is_end
     assert_equal true, actual
+  end
+
+  def test_end_of_word_overwrites_duplicate_node
+    node = Node.new
+    node.insert("A")
+    node.insert("B")
+    node.insert("A", true)
+    actual = node.children[0].is_end
+    assert_equal true, actual
+    #true should overwrite duplicated character
   end
 
 end

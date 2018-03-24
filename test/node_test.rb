@@ -100,4 +100,18 @@ class NodeTest < MiniTest::Test
     assert_equal true, actual
   end
 
+  def test_node_insert_is_case_insensitive
+    node = Node.new
+    node.insert("A")
+    node.insert("a")
+    actual = node.children.count
+    assert_equal 1, actual
+    node.insert("b")
+    actual = node.children.count
+    assert_equal 2, actual 
+    node.insert("B")
+    actual = node.children.count
+    assert_equal 2, actual
+  end
+
 end

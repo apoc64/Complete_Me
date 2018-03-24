@@ -127,6 +127,7 @@ class NodeTest < MiniTest::Test
     end_nodes = node.get_end_nodes
     assert_equal [node4], end_nodes
     assert_equal "T", end_nodes[0].character
+    #needs more tests - ie, multiple...
   end
 
 end

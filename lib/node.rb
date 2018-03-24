@@ -45,7 +45,21 @@ class Node
     return nil
   end
 
-
+  def get_end_nodes
+    #create empty array (is there a better enum?)
+    end_nodes = []
+    #iterate through children
+    @children.each do |child|
+      #if child.is_end, add it to array
+      if child.is_end
+        end_nodes << child
+      end
+      #call get_end_nodes for child, add to array
+      end_nodes += child.get_end_nodes
+    end
+    #return populated array
+    end_nodes 
+  end
 
   # #tells me whther or not a node is an end node
   # def terminal?

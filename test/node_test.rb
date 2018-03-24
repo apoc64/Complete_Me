@@ -16,6 +16,7 @@ class NodeTest < MiniTest::Test
     node = Node.new
 
     node.insert("A")
+    # binding.pry
     actual = node.children[0].character
     assert_equal "A", actual
   end

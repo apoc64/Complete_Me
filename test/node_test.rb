@@ -108,10 +108,25 @@ class NodeTest < MiniTest::Test
     assert_equal 1, actual
     node.insert("b")
     actual = node.children.count
-    assert_equal 2, actual 
+    assert_equal 2, actual
     node.insert("B")
     actual = node.children.count
     assert_equal 2, actual
+  end
+
+  def test_it_can_return_ending_node
+    node = Node.new
+    #Text for cat
+    node.insert("C")
+    node2 = node.children[0]
+    node2.insert("a")
+    node3 = node2.children[0]
+    node3.insert("t", true)
+    node4 = node3.children[0]
+
+    end_nodes = node.get_end_nodes
+    assert_equal [node4], end_nodes
+    assert_equal "T", end_nodes[0].character
   end
 
 end

@@ -63,12 +63,23 @@ class NodeTest < MiniTest::Test
     assert_equal 2, actual
     refute actual > 2
   end
+
   def test_children_can_have_parent
     node = Node.new
     node.insert("A")
     child = node.children[0]
     assert_equal node, child.parent
-  end 
+  end
+  
+  def test_node_can_be_end_of_word
+    node = Node.new
+    node.insert("A")
+    actual = node.children[0].is_end
+    assert_equal false, actual
 
+    node.insert("B", true)
+    actual = node.children[1].is_end
+    assert_equal true, actual
+  end
 
 end

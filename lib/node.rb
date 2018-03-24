@@ -28,4 +28,10 @@ class Node
     return true
   end
 
+
+
+  # #tells me whther or not a node is an end node
+  # def terminal?
+  #   if self.
+
 end

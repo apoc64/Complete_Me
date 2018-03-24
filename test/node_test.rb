@@ -11,4 +11,14 @@ class NodeTest < MiniTest::Test
     node = Node.new
     assert_instance_of Node, node
   end#test exist
+
+  def test_it_can_insert
+    node = Node.new
+
+    node.insert("A")
+    actual = node.children[0].character
+    assert_equal "A", actual
+  end
+
+
 end

@@ -24,22 +24,27 @@ class Node
   end
 
   def children_dont_have_character(character)
-    @children.each do |child|
-      if child.character == character
-        return false
-      end
+    if find_child_node(character).nil?
+      return true
+    else
+      return false
     end
-    return true
   end
 
   def change_node_is_end(character)
+    find_child_node(character).is_end = true
+  end
+
+  def find_child_node(character)
     @children.each do |child|
       if child.character == character
-
-        child.is_end = true
+        return child
       end
     end
+    return nil 
   end
+
+
 
   # #tells me whther or not a node is an end node
   # def terminal?

@@ -90,6 +90,14 @@ class NodeTest < MiniTest::Test
     actual = node.children[0].is_end
     assert_equal true, actual
     #true should overwrite duplicated character
+    actual = node.children[1].is_end
+    assert_equal false, actual
+    node.insert("B", true)
+    actual = node.children[1].is_end
+    assert_equal true, actual
+    node.insert("B", false)
+    actual = node.children[1].is_end
+    assert_equal true, actual
   end
 
 end

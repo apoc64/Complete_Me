@@ -1,8 +1,9 @@
 class Node
   attr_reader :children,
               :character,
-              :parent,
-              :is_end
+              :parent
+
+  attr_accessor :is_end
 
 
   def initialize(character = "", parent = nil, is_end = false) #should default be ""? is_end = false? parent = nil
@@ -17,6 +18,8 @@ class Node
     if children_dont_have_character(character)
       node = Node.new(character, self, is_end)
       @children << node
+    elsif is_end
+      change_node_is_end(character)
     end
   end
 
@@ -29,7 +32,14 @@ class Node
     return true
   end
 
+  def change_node_is_end(character)
+    @children.each do |child|
+      if child.character == character
 
+        child.is_end = true
+      end
+    end
+  end
 
   # #tells me whther or not a node is an end node
   # def terminal?

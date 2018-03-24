@@ -12,10 +12,19 @@ class Node
   end
 
   def insert(character) #is_end = false?
-    node = Node.new(character)
-    @children << node
+    if children_dont_have_character(character)
+      node = Node.new(character)
+      @children << node
+    end
   end
 
-
+  def children_dont_have_character(character)
+    @children.each do |child|
+      if child.character == character
+        return false
+      end
+    end
+    return true
+  end
 
 end

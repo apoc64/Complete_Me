@@ -27,5 +27,42 @@ class NodeTest < MiniTest::Test
 
   end
 
+  def test_it_does_not_duplicate_characters
+    node = Node.new
+    node.insert("A")
+    actual = node.children[0].character
+    assert_equal "A", actual
+    actual = node.children.count
+    assert_equal 1, actual
+
+    node.insert("A")
+    actual = node.children[0].character
+    assert_equal "A", actual
+    actual = node.children.count
+    assert_equal 1, actual
+    refute actual > 1
+
+    node.insert("B")
+    actual = node.children[1].character
+    assert_equal "B", actual
+    actual = node.children.count
+    assert_equal 2, actual
+    refute actual > 2
+
+    node.insert("B")
+    actual = node.children[1].character
+    assert_equal "B", actual
+    actual = node.children.count
+    assert_equal 2, actual
+    refute actual > 2
+
+    node.insert("A")
+    actual = node.children[0].character
+    assert_equal "A", actual
+    actual = node.children.count
+    assert_equal 2, actual
+    refute actual > 2
+  end
+
 
 end

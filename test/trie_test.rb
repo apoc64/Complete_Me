@@ -15,7 +15,6 @@ class CompleteMeTest < Minitest::Test
 
   def test_include_word?
     complete_me = CompleteMe.new
-    assert complete_me.include_word?("")
     word = 'phrase'
     complete_me.insert(word)
     assert complete_me.include_word?(word)

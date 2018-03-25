@@ -6,18 +6,17 @@ class CompleteMe
     @root = Node.new
   end
 
+
   def include_word?(word, node = @root)
-    word = word.upcase
-    letters = word.split("")
-    letters.each do |letter|
-      if node.children_dont_have_character(letter)
-        return false
-      else
-        node = node.find_child_node(letter)
-      end
-      return true
+    nodes = node.get_end_nodes
+    all_words = nodes.map do |end_node|
+      end_node.to_s
     end
-    node
+    if all_words.include?(word.upcase)
+      return true
+    else
+      return false
+    end
   end
 
   def split_word(word)

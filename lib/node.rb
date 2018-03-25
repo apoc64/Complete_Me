@@ -60,4 +60,8 @@ class Node
     end_nodes
   end
 
+  def to_s
+    parent.to_s + character
+  end
+
 end

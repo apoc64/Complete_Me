@@ -167,7 +167,7 @@ class NodeTest < MiniTest::Test
     trie = CompleteMe.new
     trie.insert("Cat")
 
-    node = trie.root.get_end_nodes
+    node = trie.root.get_end_nodes[0]
     assert_equal "CAT", node.to_s
   end
 

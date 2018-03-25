@@ -72,11 +72,11 @@ class CompleteMeTest < Minitest::Test
 
   def test_suggest
     complete_me = CompleteMe.new
-    file = "dog\ncat\nbear\nmonkey\ncattle"
+    file = "dog\ncat\nbear\nmonkey\ncattle\ncattles"
     complete_me.populate(file)
     assert_equal ['monkey'], complete_me.suggest('mon')
     assert_equal ['dog'], complete_me.suggest('do')
-    assert_equal ['cat', 'cattle'], complete_me.suggest('ca')
+    assert_equal ['cat', 'cattle', 'cattles'], complete_me.suggest('ca')
   end
 
 

@@ -47,4 +47,11 @@ class CompleteMe
     insert_words(words)
   end
 
+  def suggest(substring, node = @root)
+    nodes = node.get_end_nodes
+    all_words = nodes.map do |end_node|
+      end_node.to_s
+    end
+    possible_words = all_words.find_all {|word| word.index(substring) == 0 }
+  end
 end

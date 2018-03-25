@@ -11,9 +11,11 @@ class CompleteMe
     new_node = nil
     word.each_char do |char|
       new_node = node.find_child_node(char)
+      if new_node == nil
+        return nil
+      end
       node = new_node
     end
-    # binding.pry
     node
   end
 

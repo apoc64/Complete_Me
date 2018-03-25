@@ -22,6 +22,9 @@ class CompleteMeTest < Minitest::Test
     assert_instance_of Node, actual
     assert_equal 'r', actual.character
     assert_equal 'bear', actual.to_s
+    assert_equal nil, complete_me.find('hyena')
+
+
   end
 
   def test_include_word?

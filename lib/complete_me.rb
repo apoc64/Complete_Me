@@ -12,7 +12,7 @@ class CompleteMe
     all_words = nodes.map do |end_node|
       end_node.to_s
     end
-    if all_words.include?(word.upcase)
+    if all_words.include?(word.downcase)
       return true
     else
       return false
@@ -47,4 +47,13 @@ class CompleteMe
     insert_words(words)
   end
 
+  def suggest(substring, node = @root)
+    nodes = node.get_end_nodes
+    nodes = nodes.sort_by {|node| node.to_s}
+    sorted_nodes = nodes.sort_by {|node| -node.weight}
+    all_words = sorted_nodes.map do |end_node|
+      end_node.to_s
+    end
+    possible_words = all_words.find_all {|word| word.index(substring) == 0 }
+  end
 end

@@ -18,10 +18,10 @@ class NodeTest < MiniTest::Test
 
     node.insert("A")
     actual = node.children[0].character
-    assert_equal "A", actual
+    assert_equal "a", actual
     node.insert("B")
     actual = node.children[1].character
-    assert_equal "B", actual
+    assert_equal "b", actual
     actual = node.children.count
     assert_equal 2, actual
   end
@@ -42,34 +42,34 @@ class NodeTest < MiniTest::Test
     node = Node.new
     node.insert("A")
     actual = node.children[0].character
-    assert_equal "A", actual
+    assert_equal "a", actual
     actual = node.children.count
     assert_equal 1, actual
 
     node.insert("A")
     actual = node.children[0].character
-    assert_equal "A", actual
+    assert_equal "a", actual
     actual = node.children.count
     assert_equal 1, actual
     refute actual > 1
 
     node.insert("B")
     actual = node.children[1].character
-    assert_equal "B", actual
+    assert_equal "b", actual
     actual = node.children.count
     assert_equal 2, actual
     refute actual > 2
 
     node.insert("B")
     actual = node.children[1].character
-    assert_equal "B", actual
+    assert_equal "b", actual
     actual = node.children.count
     assert_equal 2, actual
     refute actual > 2
 
     node.insert("A")
     actual = node.children[0].character
-    assert_equal "A", actual
+    assert_equal "a", actual
     actual = node.children.count
     assert_equal 2, actual
     refute actual > 2
@@ -137,7 +137,7 @@ class NodeTest < MiniTest::Test
 
     end_nodes = node.get_end_nodes
     assert_equal [node4], end_nodes
-    assert_equal "T", end_nodes[0].character
+    assert_equal "t", end_nodes[0].character
   end
 
   def test_it_can_return_multiple_end_nodes
@@ -168,7 +168,7 @@ class NodeTest < MiniTest::Test
     trie.insert("Cat")
 
     node = trie.root.get_end_nodes[0]
-    assert_equal "CAT", node.to_s
+    assert_equal "cat", node.to_s
   end
 
 end

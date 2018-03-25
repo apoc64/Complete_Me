@@ -3,7 +3,8 @@ class Node
               :character,
               :parent
 
-  attr_accessor :is_end
+  attr_accessor :is_end,
+                :weight
 
   def initialize(character = "", parent = nil, is_end = false)
     @character = character
@@ -14,7 +15,7 @@ class Node
   end
 
   def insert(character, is_end = false)
-    character = character.upcase
+    character = character.downcase
     if children_dont_have_character(character)
       node = Node.new(character, self, is_end)
       @children << node

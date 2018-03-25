@@ -23,7 +23,12 @@ class NodeTest < MiniTest::Test
     assert_equal "B", actual
     actual = node.children.count
     assert_equal 2, actual
+  end
 
+  def test_insert_returns_node
+    node = Node.new
+    new_node = node.insert("A")
+    assert_instance_of Node, new_node 
   end
 
   def test_it_does_not_duplicate_characters

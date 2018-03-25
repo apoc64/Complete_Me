@@ -130,4 +130,35 @@ class NodeTest < MiniTest::Test
     #needs more tests - ie, multiple...
   end
 
+  def test_it_can_return_multiple_end_nodes
+    node = Node.new
+    #Text for cat, car, cart
+    node.insert("C")
+    node2 = node.children[0]
+    node2.insert("a")
+    node3 = node2.children[0]
+    node3.insert("t", true)
+    node4 = node3.children[0]
+    node3.insert("r", true)
+    node5 = node3.children[1]
+    node5.insert("t", true)
+    node6 = node5.children[0]
+
+    end_nodes = node.get_end_nodes
+    expected = [node4, node5, node6]
+    assert_equal expected, end_nodes
+
+    #text for cattle
+    node4.insert("t")
+    node7 = node4.children[0]
+    node7.insert("l")
+    node8 = node7.children[0]
+    node8.insert("e", true)
+    node9 = node8.children[0]
+    # binding.pry
+    end_nodes = node.get_end_nodes
+    expected = [node4, node9, node5, node6] 
+    assert_equal expected, end_nodes
+  end
+
 end

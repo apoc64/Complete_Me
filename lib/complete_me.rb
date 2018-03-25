@@ -17,6 +17,14 @@ class CompleteMe
   #
   #     end
   # end
-  
+
+  def split_word(word)
+    letters = word.split('')
+  end 
+
+  # def insert(word)
+  #   letters = word.split('')
+  #   letters.each do
+  # end
 
 end

@@ -25,6 +25,7 @@ class CompleteMeTest < Minitest::Test
     complete_me.insert("cattle")
     assert complete_me.include_word?("cat")
     assert complete_me.include_word?("cattle")
+    refute complete_me.include_word?('something')
 
   end
 

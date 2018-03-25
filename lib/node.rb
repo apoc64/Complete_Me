@@ -19,8 +19,11 @@ class Node
       node = Node.new(character, self, is_end)
       @children << node
     elsif is_end
-      change_node_is_end(character)
+      node = change_node_is_end(character)
+    else
+      node = find_child_node(character)
     end
+    node
   end
 
   def children_dont_have_character(character)
@@ -32,7 +35,9 @@ class Node
   end
 
   def change_node_is_end(character)
-    find_child_node(character).is_end = true
+    node = find_child_node(character)
+    node.is_end = true
+    node
   end
 
   def find_child_node(character)

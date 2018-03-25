@@ -28,7 +28,13 @@ class NodeTest < MiniTest::Test
   def test_insert_returns_node
     node = Node.new
     new_node = node.insert("A")
-    assert_instance_of Node, new_node 
+    assert_instance_of Node, new_node
+
+    node2 = node.insert("A")
+    assert_instance_of Node, node2
+
+    node3 = node.insert("A", true)
+    assert_instance_of Node, node3
   end
 
   def test_it_does_not_duplicate_characters

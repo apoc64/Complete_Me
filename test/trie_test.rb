@@ -70,5 +70,5 @@ class CompleteMeTest < Minitest::Test
     refute complete_me.include_word?("cats")
     refute complete_me.include_word?("do")
   end
-  
+
 end

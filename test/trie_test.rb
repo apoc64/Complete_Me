@@ -81,17 +81,24 @@ class CompleteMeTest < Minitest::Test
 
   def test_it_sorts_suggestions_by_weight
     complete_me = CompleteMe.new
-    file = "dog\ncat\nmonkey\ncattle"
+    file = "dog\ncat\nmonkey\ncattle\ncattles"
     complete_me.populate(file)
 
-    assert_equal ['cat', 'cattle'], complete_me.suggest('ca')
+    assert_equal ['cat', 'cattle', 'cattles'], complete_me.suggest('ca')
     root = complete_me.root
     root_end_nodes = root.get_end_nodes
     node = root_end_nodes[2]
     node.weight = 2
     # binding.pry
-    assert_equal ['cattle', 'cat'], complete_me.suggest('ca')
+    assert_equal ['cattle', 'cat', 'cattles'], complete_me.suggest('ca')
+    cattles = root_end_nodes[3]
+    cattles.weight = 4
+    assert_equal ['cattles', 'cattle', 'cat'], complete_me.suggest('ca')
+    complete_me.insert('cats')
 
+    assert_equal ['cattles', 'cattle', 'cat', 'cats'], complete_me.suggest('ca')
+    cattles.weight = 0
+    assert_equal ['cattle', 'cat', 'cats', 'cattles'], complete_me.suggest('ca')
   end
 
 

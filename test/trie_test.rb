@@ -13,6 +13,20 @@ class CompleteMeTest < Minitest::Test
     assert_instance_of CompleteMe, complete_me
   end
 
+  def test_find
+    complete_me = CompleteMe.new
+    file = "dog\ncat\nbear\nmonkey\ncattle"
+    complete_me.populate(file)
+    actual = complete_me.find('bear')
+    # binding.pry
+    assert_instance_of Node, actual
+    assert_equal 'r', actual.character
+    assert_equal 'bear', actual.to_s
+    assert_equal nil, complete_me.find('hyena')
+
+
+  end
+
   def test_include_word?
     complete_me = CompleteMe.new
     word = 'phrase'

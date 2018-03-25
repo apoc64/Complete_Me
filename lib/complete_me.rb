@@ -7,6 +7,18 @@ class CompleteMe
     @root = Node.new
   end
 
+  def find(word, node = @root)
+    new_node = nil
+    word.each_char do |char|
+      new_node = node.find_child_node(char)
+      if new_node == nil
+        return nil
+      end
+      node = new_node
+    end
+    node
+  end
+
 
   def include_word?(word, node = @root)
     nodes = node.get_end_nodes

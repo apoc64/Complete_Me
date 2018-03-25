@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/node.rb'
 
 class CompleteMe

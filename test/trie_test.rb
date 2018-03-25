@@ -77,6 +77,7 @@ class CompleteMeTest < Minitest::Test
     assert_equal ['monkey'], complete_me.suggest('mon')
     assert_equal ['dog'], complete_me.suggest('do')
     assert_equal ['cat', 'cattle', 'cattles'], complete_me.suggest('ca')
+    assert_equal [], complete_me.suggest('hyena')
   end
 
   def test_it_sorts_suggestions_by_weight

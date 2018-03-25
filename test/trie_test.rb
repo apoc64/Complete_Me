@@ -21,5 +21,14 @@ class CompleteMeTest < Minitest::Test
   def test_it_splits_words
     complete_me = CompleteMe.new
     assert_equal ["w","o","r","d"], complete_me.split_word("word")
+    assert_equal [], complete_me.split_word("")
+    assert_equal ["w"], complete_me.split_word("w")
   end
+
+  def test_it_inserts
+    complete_me = CompleteMe.new
+    word = "phrase"
+    complete.insert(word)
+    assert complete_me.include_word?(word)
+
 end

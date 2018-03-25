@@ -20,11 +20,18 @@ class CompleteMe
 
   def split_word(word)
     letters = word.split('')
-  end 
+  end
 
-  # def insert(word)
-  #   letters = word.split('')
-  #   letters.each do
-  # end
+  def insert(word)
+    letters = split_word(word)
+    letters.each do |letter|
+      if letter.index == letters[-1].index
+        node.insert(letter, true)
+      else
+        node.insert(letter)
+      end
+    end
+  end
+
 
 end

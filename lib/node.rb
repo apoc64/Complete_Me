@@ -20,6 +20,7 @@ class Node
       node = Node.new(character, self, is_end)
       @children << node
     elsif is_end
+      @children << node
       change_node_is_end(character)
     end
   end

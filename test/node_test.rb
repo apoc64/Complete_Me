@@ -2,6 +2,7 @@ require_relative "../lib/node"
 require 'pry'
 require "Minitest/autorun"
 require "Minitest/pride"
+require_relative "../lib/complete_me" #for populating test data
 
 class NodeTest < MiniTest::Test
   def setup
@@ -160,6 +161,14 @@ class NodeTest < MiniTest::Test
     end_nodes = node.get_end_nodes
     expected = [node4, node9, node5, node6]
     assert_equal expected, end_nodes
+  end
+
+  def test_node_can_return_a_string
+    trie = CompleteMe.new
+    trie.insert("Cat")
+
+    node = trie.root.get_end_nodes
+    assert_equal "CAT", node.to_s
   end
 
 end

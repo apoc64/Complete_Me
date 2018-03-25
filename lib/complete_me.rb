@@ -7,6 +7,7 @@ class CompleteMe
   end
 
   def include_word?(word, node = @root)
+    word = word.upcase
     letters = word.split('')
     letters.each do |letter|
       if node.children_dont_have_character(letter)

@@ -29,7 +29,7 @@ class CompleteMeTest < Minitest::Test
     complete_me = CompleteMe.new
     word = "phrase"
     complete_me.insert(word)
-    binding.pry
+    # binding.pry
     assert complete_me.include_word?(word)
   end
 

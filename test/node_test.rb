@@ -10,13 +10,12 @@ class NodeTest < MiniTest::Test
   def test_it_exists
     node = Node.new
     assert_instance_of Node, node
-  end#test exist
+  end # test exist
 
   def test_it_can_insert
     node = Node.new
 
     node.insert("A")
-    # binding.pry
     actual = node.children[0].character
     assert_equal "A", actual
     node.insert("B")
@@ -89,7 +88,7 @@ class NodeTest < MiniTest::Test
     node.insert("A", true)
     actual = node.children[0].is_end
     assert_equal true, actual
-    #true should overwrite duplicated character
+    # true should overwrite duplicated character
     actual = node.children[1].is_end
     assert_equal false, actual
     node.insert("B", true)
@@ -116,7 +115,7 @@ class NodeTest < MiniTest::Test
 
   def test_it_can_return_ending_node
     node = Node.new
-    #Text for cat
+    # Text for cat
     node.insert("C")
     node2 = node.children[0]
     node2.insert("a")
@@ -127,12 +126,11 @@ class NodeTest < MiniTest::Test
     end_nodes = node.get_end_nodes
     assert_equal [node4], end_nodes
     assert_equal "T", end_nodes[0].character
-    #needs more tests - ie, multiple...
   end
 
   def test_it_can_return_multiple_end_nodes
     node = Node.new
-    #Text for cat, car, cart
+    # Text for cat, car, cart
     node.insert("C")
     node2 = node.children[0]
     node2.insert("a")
@@ -148,7 +146,7 @@ class NodeTest < MiniTest::Test
     expected = [node4, node5, node6]
     assert_equal expected, end_nodes
 
-    #text for cattle
+    # text for cattle
     node4.insert("t")
     node7 = node4.children[0]
     node7.insert("l")
@@ -157,7 +155,7 @@ class NodeTest < MiniTest::Test
     node9 = node8.children[0]
     # binding.pry
     end_nodes = node.get_end_nodes
-    expected = [node4, node9, node5, node6] 
+    expected = [node4, node9, node5, node6]
     assert_equal expected, end_nodes
   end
 

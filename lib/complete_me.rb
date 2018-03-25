@@ -24,12 +24,17 @@ class CompleteMe
   end
 
   def insert(word, node = @root)
+
     letters = split_word(word)
     letters.each_with_index do |letter, index|
       if index == letters.index(letters[-1])
         node.insert(letter, true)
       else
-        node = node.insert(letter)
+        if node.find_child_node(letter).class == Node
+          node = node.find_child_node(letter)
+        else
+          node = node.insert(letter)
+        end
       end
     end
   end

@@ -16,6 +16,16 @@ class CompleteMeTest < Minitest::Test
   def test_include_word?
     complete_me = CompleteMe.new
     assert complete_me.include_word?("")
+    word = 'phrase'
+    complete_me.insert(word)
+    assert complete_me.include_word?(word)
+    refute complete_me.include_word?('something')
+    binding.pry
+    complete_me.insert("cat")
+    complete_me.insert("cattle")
+    assert complete_me.include_word?("cat")
+    # assert complete_me.include_word?("cattle")
+
   end
 
   def test_it_splits_words

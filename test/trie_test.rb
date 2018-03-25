@@ -18,6 +18,7 @@ class CompleteMeTest < Minitest::Test
     file = "dog\ncat\nbear\nmonkey\ncattle"
     complete_me.populate(file)
     actual = complete_me.find('bear')
+    # binding.pry
     assert_instance_of Node, actual
     assert_equal 'r', actual.character
     assert_equal 'bear', actual.to_s

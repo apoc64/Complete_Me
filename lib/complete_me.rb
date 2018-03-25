@@ -12,7 +12,7 @@ class CompleteMe
     all_words = nodes.map do |end_node|
       end_node.to_s
     end
-    if all_words.include?(word.upcase)
+    if all_words.include?(word.downcase)
       return true
     else
       return false

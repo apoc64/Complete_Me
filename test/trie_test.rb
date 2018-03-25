@@ -70,4 +70,14 @@ class CompleteMeTest < Minitest::Test
     refute complete_me.include_word?("do")
   end
 
+  def test_suggest
+    complete_me = CompleteMe.new
+    file = "dog\ncat\nbear\nmonkey\ncattle"
+    complete_me.populate(file)
+    assert_equal ['monkey'], complete_me.suggest('mon')
+    assert_equal ['dog'], complete_me.suggest('do')
+    assert_equal ['cat', 'cattle'], complete_me.suggest('ca')
+  end
+
+
 end

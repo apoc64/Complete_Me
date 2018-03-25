@@ -19,9 +19,11 @@ class Node
     if children_dont_have_character(character)
       node = Node.new(character, self, is_end)
       @children << node
+      node
     elsif is_end
       @children << node
       change_node_is_end(character)
+      node
     end
   end
 

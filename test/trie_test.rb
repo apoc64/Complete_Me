@@ -50,11 +50,25 @@ class CompleteMeTest < Minitest::Test
     complete_me.insert_words(words)
     root = complete_me.root
     root_end_nodes = root.get_end_nodes
-    assert_equal root_end_nodes.count , 4
+    assert_equal root_end_nodes.count, 4
     assert_instance_of Node, root_end_nodes[0]
     assert_instance_of Node, root_end_nodes[1]
     assert_instance_of Node, root_end_nodes[2]
     assert_instance_of Node, root_end_nodes[3]
+  end
+
+  def test_it_populates
+    complete_me = CompleteMe.new
+    file = "dog\ncat\nbear\nmonkey\ncattle"
+    complete_me.populate(file)
+    assert complete_me.include_word?("cat")
+    assert complete_me.include_word?("dog")
+    assert complete_me.include_word?("bear")
+    assert complete_me.include_word?("monkey")
+    assert complete_me.include_word?("cattle")
+    refute complete_me.include_word?("mon")
+    refute complete_me.include_word?("cats")
+    refute complete_me.include_word?("do")
   end
 
 end

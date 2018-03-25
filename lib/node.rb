@@ -5,8 +5,7 @@ class Node
 
   attr_accessor :is_end
 
-
-  def initialize(character = "", parent = nil, is_end = false) #should default be ""? is_end = false? parent = nil
+  def initialize(character = "", parent = nil, is_end = false)
     @character = character
     @children = []
     @is_end = is_end
@@ -14,14 +13,17 @@ class Node
     @weight = 0
   end
 
-  def insert(character, is_end = false) #is_end = false?
+  def insert(character, is_end = false)
     character = character.upcase
     if children_dont_have_character(character)
       node = Node.new(character, self, is_end)
       @children << node
     elsif is_end
-      change_node_is_end(character)
+      node = change_node_is_end(character)
+    else
+      node = find_child_node(character)
     end
+    node
   end
 
   def children_dont_have_character(character)
@@ -33,7 +35,9 @@ class Node
   end
 
   def change_node_is_end(character)
-    find_child_node(character).is_end = true
+    node = find_child_node(character)
+    node.is_end = true
+    node
   end
 
   def find_child_node(character)
@@ -45,10 +49,15 @@ class Node
     return nil
   end
 
-
-
-  # #tells me whther or not a node is an end node
-  # def terminal?
-  #   if self.
+  def get_end_nodes
+    end_nodes = []
+    @children.each do |child|
+      if child.is_end
+        end_nodes << child
+      end
+      end_nodes += child.get_end_nodes
+    end
+    end_nodes
+  end
 
 end

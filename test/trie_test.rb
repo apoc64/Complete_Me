@@ -20,11 +20,11 @@ class CompleteMeTest < Minitest::Test
     complete_me.insert(word)
     assert complete_me.include_word?(word)
     refute complete_me.include_word?('something')
-    binding.pry
+    # binding.pry
     complete_me.insert("cat")
     complete_me.insert("cattle")
     assert complete_me.include_word?("cat")
-    # assert complete_me.include_word?("cattle")
+    assert complete_me.include_word?("cattle")
 
   end
 

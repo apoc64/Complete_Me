@@ -17,6 +17,7 @@ class CompleteMe
       end
       return true
     end
+    node
   end
 
   def split_word(word)
@@ -24,19 +25,19 @@ class CompleteMe
   end
 
   def insert(word, node = @root)
-
     letters = split_word(word)
     letters.each_with_index do |letter, index|
       if index == letters.index(letters[-1])
         node.insert(letter, true)
       else
-        if node.find_child_node(letter).class == Node
-          node = node.find_child_node(letter)
-        else
-          node = node.insert(letter)
-        end
+        # if node.find_child_node(letter).class == Node
+        #   node = node.find_child_node(letter)
+        # else
+        node = node.insert(letter)
+        # end
       end
     end
+    # binding.pry
   end
 
 

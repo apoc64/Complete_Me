@@ -44,4 +44,17 @@ class CompleteMeTest < Minitest::Test
     assert complete_me.include_word?(word)
   end
 
+  def test_it_inserts_words
+    complete_me = CompleteMe.new
+    words = ['dog', 'cat', 'cattle', 'zebra']
+    complete_me.insert_words(words)
+    root = complete_me.root
+    root_end_nodes = root.get_end_nodes
+    assert_equal root_end_nodes.count , 4
+    assert_instance_of Node, root_end_nodes[0]
+    assert_instance_of Node, root_end_nodes[1]
+    assert_instance_of Node, root_end_nodes[2]
+    assert_instance_of Node, root_end_nodes[3]
+  end
+
 end

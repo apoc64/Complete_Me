@@ -3,7 +3,8 @@ class Node
               :character,
               :parent
 
-  attr_accessor :is_end
+  attr_accessor :is_end,
+                :weight
 
   def initialize(character = "", parent = nil, is_end = false)
     @character = character

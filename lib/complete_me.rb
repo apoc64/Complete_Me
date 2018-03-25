@@ -49,7 +49,8 @@ class CompleteMe
 
   def suggest(substring, node = @root)
     nodes = node.get_end_nodes
-    all_words = nodes.map do |end_node|
+    sorted_nodes = nodes.sort_by {|node| node.weight}
+    all_words = sorted_nodes.map do |end_node|
       end_node.to_s
     end
     possible_words = all_words.find_all {|word| word.index(substring) == 0 }

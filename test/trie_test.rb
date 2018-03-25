@@ -12,4 +12,9 @@ class CompleteMeTest < Minitest::Test
     complete_me = CompleteMe.new
     assert_instance_of CompleteMe, complete_me
   end
-end 
+
+  def test_include_word?
+    complete_me = CompleteMe.new
+    assert complete_me.include_word?("")
+  end
+end

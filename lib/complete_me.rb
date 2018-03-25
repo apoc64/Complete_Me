@@ -35,5 +35,11 @@ class CompleteMe
     end
   end
 
+  #words is an array of words
+  def insert_words(words)
+    words.each do |word|
+      insert(word)
+    end
+  end 
 
 end

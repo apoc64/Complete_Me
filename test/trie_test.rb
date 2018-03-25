@@ -30,5 +30,6 @@ class CompleteMeTest < Minitest::Test
     word = "phrase"
     complete.insert(word)
     assert complete_me.include_word?(word)
+  end 
 
 end

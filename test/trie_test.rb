@@ -21,7 +21,7 @@ class CompleteMeTest < Minitest::Test
     assert_instance_of Node, actual
     assert_equal 'r', actual.character
     assert_equal 'bear', actual.to_s
-    assert_equal nil, complete_me.find('hyena')
+    assert_nil complete_me.find('hyena')
 
 
   end
@@ -115,5 +115,21 @@ class CompleteMeTest < Minitest::Test
     assert_equal ['cattle', 'cat', 'cats', 'cattles'], complete_me.suggest('ca')
   end
 
+  def test_it_accurately_counts_the_number_of_words_in_a_trie
+    trie = CompleteMe.new
+    assert_equal 0, trie.count
+
+    expected = 10
+    words = ['dog', 'cat', 'bird', 'monkey', 'chimp', 'whale', 'dolphin', 'eagle', 'aardvark', 'ant']
+    trie.insert_words(words)
+    assert_equal expected, trie.count
+
+    trie = CompleteMe.new
+    expected = 235886
+    file = '/usr/share/dict/words'
+    trie.populate(file)
+    assert_equal expected, trie.count
+
+  end
 
 end

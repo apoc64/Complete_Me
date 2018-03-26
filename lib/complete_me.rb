@@ -63,15 +63,21 @@ class CompleteMe
     if include_word?(substring)
       nodes << node
     end
-    sorted_nodes = sort_nodes(nodes)
+    sorted_nodes = sort_nodes(nodes, node.suggestions)
     all_words = sorted_nodes.map do |end_node|
       end_node.to_s
     end
   end
 
-  def sort_nodes(nodes)
+  def sort_nodes(nodes, suggestions)
     alphabetized = nodes.sort_by {|node| node.to_s}
-    alphabetized.sort_by {|node| -node.weight}
+    weighted = alphabetized.sort_by {|node| -node.weight}
+    weighted.sort_by do |node|
+      if suggestions[node].nil?
+        suggestions[node] = 0
+      end
+      -suggestions[node]
+    end
   end
 
   def count(node = @root)
@@ -80,9 +86,18 @@ class CompleteMe
   end
 
   def select(substring, string)
-    find(string).weight += 1
+    sub_node = find(substring)
+    word_node = find(string)
+    word_node.weight += 1
 
-
-
+    if sub_node.suggestions.include?(word_node)
+      weight = sub_node.suggestions[word_node]
+      weight += 1
+      sub_node.suggestions[word_node] = weight
+    else
+      sub_node.suggestions[word_node] = 1
+    end
   end
+
+
 end

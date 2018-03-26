@@ -60,6 +60,7 @@ class CompleteMe
     node = find(substring)
     return [] if node == nil
     nodes = node.get_end_nodes
+
     sorted_nodes = sort_nodes(nodes)
     all_words = sorted_nodes.map do |end_node|
       end_node.to_s

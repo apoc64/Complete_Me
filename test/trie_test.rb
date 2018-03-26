@@ -131,10 +131,18 @@ class CompleteMeTest < Minitest::Test
     actual = trie.count
     assert_equal expected, actual
 
-    whole_dict = CompleteMe.new
-    dict_count = 235886
-    whole_dict.populate(File.read("/usr/share/dict/words"))
-    # binding.pry
-    assert_equal dict_count, whole_dict.count
+    trie = CompleteMe.new
+    expected = 13
+    words = ['dog', 'cat', 'cats', 'bird', 'birddy', 'monkey', 'chimp', 'whale', 'dolphin', 'eagle', 'aardvark', 'ant', 'Ant']
+    trie.insert_words(words)
+    actual = trie.count
+    assert_equal expected, actual
+
+
+    # whole_dict = CompleteMe.new
+    # dict_count = 235886
+    # whole_dict.populate(File.read("/usr/share/dict/words"))
+    # # binding.pry
+    # assert_equal dict_count, whole_dict.count
   end
 end

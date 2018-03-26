@@ -1,5 +1,5 @@
 require 'pry'
-require './lib/node.rb'
+require_relative '../lib/node.rb'
 
 class CompleteMe
   attr_reader :root
@@ -33,6 +33,7 @@ class CompleteMe
 
   def split_word(word)
     letters = word.split("")
+    letters
   end
 
   def insert(word, node = @root)
@@ -68,5 +69,10 @@ class CompleteMe
     end
     possible_words = all_words.find_all {|word| word.index(substring) == 0 }
   end
-  
+
+  def count(node = @root)
+   nodes = node.get_end_nodes.count
+   nodes
+  end
+
 end

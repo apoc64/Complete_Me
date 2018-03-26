@@ -81,5 +81,8 @@ class CompleteMe
 
   def select(substring, string)
     find(string).weight += 1
+
+
+
   end
 end

@@ -1,7 +1,8 @@
 class Node
   attr_reader :children,
               :character,
-              :parent
+              :parent,
+              :suggestions
 
   attr_accessor :is_end,
                 :weight
@@ -12,6 +13,8 @@ class Node
     @is_end = is_end
     @parent = parent
     @weight = 0
+
+    @suggestions = {}
   end
 
   def insert(character, is_end = false)

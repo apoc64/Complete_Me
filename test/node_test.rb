@@ -171,4 +171,12 @@ class NodeTest < MiniTest::Test
     assert_equal "Cat", node.to_s
   end
 
+  def test_nodes_start_with_empty_suggestion_hash
+    node = Node.new
+    actual = node.suggestions
+    expected = {}
+    # binding.pry
+    assert_equal expected, actual
+  end
+
 end

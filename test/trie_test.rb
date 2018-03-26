@@ -132,7 +132,7 @@ class CompleteMeTest < Minitest::Test
     complete_me.insert('cats')
 
     assert_equal ['cattles', 'cattle', 'cat', 'cats'], complete_me.suggest('ca')
-    
+    # binding.pry
     cattles.weight = 0
     assert_equal ['cattle', 'cat', 'cats', 'cattles'], complete_me.suggest('ca')
   end

@@ -54,6 +54,28 @@ class CompleteMeTest < Minitest::Test
     complete_me.insert(word)
     # binding.pry
     assert complete_me.include_word?(word)
+
+    word = "pharoh"
+    complete_me.insert(word)
+    word = "police"
+    complete_me.insert(word)
+    word = "Pharoh"
+    complete_me.insert(word)
+    word = "monkey"
+    complete_me.insert(word)
+    word = "dog"
+    complete_me.insert(word)
+    word = "xxoxxxxxo"
+    complete_me.insert(word)
+    word = "Phrase"
+    complete_me.insert(word)
+    assert complete_me.include_word?('pharoh')
+    assert complete_me.include_word?('police')
+    assert complete_me.include_word?('monkey')
+    assert complete_me.include_word?('Pharoh')
+    assert complete_me.include_word?('dog')
+    assert complete_me.include_word?('xxoxxxxxo')
+    assert complete_me.include_word?('Phrase')
   end
 
   def test_it_inserts_words

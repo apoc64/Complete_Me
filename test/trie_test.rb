@@ -166,4 +166,20 @@ class CompleteMeTest < Minitest::Test
     assert_equal ['cattle', 'cat', 'cattles'], complete_me.suggest('ca')
   end
 
+  def test_select_increments_by_substing
+    complete_me = CompleteMe.new
+    file = "dog\ncat\nbear\nmonkey\ncattle\ncattles"
+    complete_me.populate(file)
+
+    assert_equal ['cat', 'cattle', 'cattles'], complete_me.suggest('ca')
+    complete_me.select('ca', 'cattle')
+    complete_me.select('ca', 'cattle')
+
+    assert_equal ['cattle', 'cat', 'cattles'], complete_me.suggest('cat')
+
+    complete_me.select('cat', 'cattles')
+    assert_equal ['cattles', 'cat', 'cattle'], complete_me.suggest('ca')
+
+  end
+
 end

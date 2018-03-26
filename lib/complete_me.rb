@@ -7,6 +7,7 @@ class CompleteMe
     @root = Node.new
   end
 
+  #returns the end node of a string if it is present in the trie
   def find(word, node = @root)
     new_node = nil
     word.each_char do |char|
@@ -70,4 +71,7 @@ class CompleteMe
    nodes
   end
 
+  def select(substring, string)
+    find(string).weight += 1
+  end
 end

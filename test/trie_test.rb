@@ -38,14 +38,8 @@ class CompleteMeTest < Minitest::Test
     assert complete_me.include_word?("cat")
     assert complete_me.include_word?("cattle")
     refute complete_me.include_word?('something')
-  end
 
-  # def test_it_splits_words
-  #   complete_me = CompleteMe.new
-  #   assert_equal ["w","o","r","d"], complete_me.split_word("word")
-  #   assert_equal [], complete_me.split_word("")
-  #   assert_equal ["w"], complete_me.split_word("w")
-  # end
+  end
 
   def test_it_inserts
     complete_me = CompleteMe.new
@@ -153,18 +147,22 @@ class CompleteMeTest < Minitest::Test
     actual = trie.count
     assert_equal expected, actual
 
-    trie = CompleteMe.new
-    expected = 13
-    words = ['dog', 'cat', 'cats', 'bird', 'birddy', 'monkey', 'chimp', 'whale', 'dolphin', 'eagle', 'aardvark', 'ant', 'Ant', 'ant']
-    trie.insert_words(words)
-    actual = trie.count
-    assert_equal expected, actual
-
     whole_dict = CompleteMe.new
-    dict = File.read("/usr/share/dict/words")
-    whole_dict.populate(dict)
-    expected = dict.split("\n").count
+    dict_count = 235886
+    whole_dict.populate(File.read("/usr/share/dict/words"))
     # binding.pry
-    assert_equal expected, whole_dict.count
+    assert_equal dict_count, whole_dict.count
   end
+
+  def test_select_increments_the_weight
+    complete_me = CompleteMe.new
+    file = "dog\ncat\nbear\nmonkey\ncattle\ncattles"
+    complete_me.populate(file)
+    assert_equal ['cat', 'cattle', 'cattles'], complete_me.suggest('ca')
+    complete_me.select('ca', 'cattle')
+    complete_me.select('ca', 'cattle')
+    complete_me.select('ca', 'cattle')
+    assert_equal ['cattle', 'cat', 'cattles'], complete_me.suggest('ca')
+  end
+
 end

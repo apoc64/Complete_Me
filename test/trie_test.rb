@@ -40,12 +40,12 @@ class CompleteMeTest < Minitest::Test
     refute complete_me.include_word?('something')
   end
 
-  def test_it_splits_words
-    complete_me = CompleteMe.new
-    assert_equal ["w","o","r","d"], complete_me.split_word("word")
-    assert_equal [], complete_me.split_word("")
-    assert_equal ["w"], complete_me.split_word("w")
-  end
+  # def test_it_splits_words
+  #   complete_me = CompleteMe.new
+  #   assert_equal ["w","o","r","d"], complete_me.split_word("word")
+  #   assert_equal [], complete_me.split_word("")
+  #   assert_equal ["w"], complete_me.split_word("w")
+  # end
 
   def test_it_inserts
     complete_me = CompleteMe.new
@@ -133,16 +133,16 @@ class CompleteMeTest < Minitest::Test
 
     trie = CompleteMe.new
     expected = 13
-    words = ['dog', 'cat', 'cats', 'bird', 'birddy', 'monkey', 'chimp', 'whale', 'dolphin', 'eagle', 'aardvark', 'ant', 'Ant']
+    words = ['dog', 'cat', 'cats', 'bird', 'birddy', 'monkey', 'chimp', 'whale', 'dolphin', 'eagle', 'aardvark', 'ant', 'Ant', 'ant']
     trie.insert_words(words)
     actual = trie.count
     assert_equal expected, actual
 
-
-    # whole_dict = CompleteMe.new
-    # dict_count = 235886
-    # whole_dict.populate(File.read("/usr/share/dict/words"))
-    # # binding.pry
-    # assert_equal dict_count, whole_dict.count
+    whole_dict = CompleteMe.new
+    dict = File.read("/usr/share/dict/words")
+    whole_dict.populate(dict)
+    expected = dict.split("\n").count
+    # binding.pry
+    assert_equal expected, whole_dict.count
   end
 end

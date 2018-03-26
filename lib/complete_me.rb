@@ -31,15 +31,16 @@ class CompleteMe
     end
   end
 
-  def split_word(word)
-    letters = word.split("")
-    letters
-  end
+  # def split_word(word)
+  #   letters = word.split("")
+  #   letters
+  # end
 
   def insert(word, node = @root)
-    letters = split_word(word)
+    letters = word.split("")
     letters.each_with_index do |letter, index|
-      if index == letters.index(letters[-1])
+      if index == word.length - 1
+        # letters.index(letters[-1])
         node.insert(letter, true)
       else
         node = node.insert(letter)

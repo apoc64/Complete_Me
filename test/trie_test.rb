@@ -39,7 +39,6 @@ class CompleteMeTest < Minitest::Test
     assert complete_me.include_word?("cat")
     assert complete_me.include_word?("cattle")
     refute complete_me.include_word?('something')
-
   end
 
   def test_it_splits_words

@@ -124,11 +124,11 @@ class CompleteMeTest < Minitest::Test
     trie.insert_words(words)
     assert_equal expected, trie.count
 
-    trie = CompleteMe.new
-    expected = 235886
-    file = '/usr/share/dict/words'
-    trie.populate(file)
-    assert_equal expected, trie.count
+    whole_dict = CompleteMe.new
+    dict_count = 235886
+    whole_dict.populate(File.read("/usr/share/dict/words"))
+    # binding.pry
+    assert_equal dict_count, whole_dict.count
 
   end
 

@@ -68,5 +68,10 @@ class CompleteMe
     end
     possible_words = all_words.find_all {|word| word.index(substring) == 0 }
   end
-  
+
+  def count(node = @root)
+   nodes = node.get_end_nodes.count
+   nodes
+  end
+
 end

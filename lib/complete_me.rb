@@ -55,14 +55,20 @@ class CompleteMe
     insert_words(words)
   end
 
-  def suggest(substring, node = @root)
+  def suggest(substring) #, node = @root)
+    # nodes = node.get_end_nodes
+    node = find(substring)
+    return [] if node == nil
     nodes = node.get_end_nodes
-    nodes = nodes.sort_by {|node| node.to_s}
+
+    nodes.sort_by {|node| node.to_s}
+
     sorted_nodes = nodes.sort_by {|node| -node.weight}
+
     all_words = sorted_nodes.map do |end_node|
       end_node.to_s
     end
-    possible_words = all_words.find_all {|word| word.index(substring) == 0 }
+    # possible_words = all_words.find_all {|word| word.index(substring) == 0 }
   end
 
   def count(node = @root)

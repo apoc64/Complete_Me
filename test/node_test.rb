@@ -18,10 +18,10 @@ class NodeTest < MiniTest::Test
 
     node.insert("A")
     actual = node.children[0].character
-    assert_equal "a", actual
+    assert_equal "A", actual
     node.insert("B")
     actual = node.children[1].character
-    assert_equal "b", actual
+    assert_equal "B", actual
     actual = node.children.count
     assert_equal 2, actual
   end
@@ -42,34 +42,34 @@ class NodeTest < MiniTest::Test
     node = Node.new
     node.insert("A")
     actual = node.children[0].character
-    assert_equal "a", actual
+    assert_equal "A", actual
     actual = node.children.count
     assert_equal 1, actual
 
     node.insert("A")
     actual = node.children[0].character
-    assert_equal "a", actual
+    assert_equal "A", actual
     actual = node.children.count
     assert_equal 1, actual
     refute actual > 1
 
     node.insert("B")
     actual = node.children[1].character
-    assert_equal "b", actual
+    assert_equal "B", actual
     actual = node.children.count
     assert_equal 2, actual
     refute actual > 2
 
     node.insert("B")
     actual = node.children[1].character
-    assert_equal "b", actual
+    assert_equal "B", actual
     actual = node.children.count
     assert_equal 2, actual
     refute actual > 2
 
     node.insert("A")
     actual = node.children[0].character
-    assert_equal "a", actual
+    assert_equal "A", actual
     actual = node.children.count
     assert_equal 2, actual
     refute actual > 2
@@ -111,19 +111,19 @@ class NodeTest < MiniTest::Test
     assert_equal true, actual
   end
 
-  def test_node_insert_is_case_insensitive
-    node = Node.new
-    node.insert("A")
-    node.insert("a")
-    actual = node.children.count
-    assert_equal 1, actual
-    node.insert("b")
-    actual = node.children.count
-    assert_equal 2, actual
-    node.insert("B")
-    actual = node.children.count
-    assert_equal 2, actual
-  end
+  # def test_node_insert_is_case_insensitive
+  #   node = Node.new
+  #   node.insert("A")
+  #   node.insert("a")
+  #   actual = node.children.count
+  #   assert_equal 1, actual
+  #   node.insert("b")
+  #   actual = node.children.count
+  #   assert_equal 2, actual
+  #   node.insert("B")
+  #   actual = node.children.count
+  #   assert_equal 2, actual
+  # end
 
   def test_it_can_return_ending_node
     node = Node.new
@@ -168,7 +168,7 @@ class NodeTest < MiniTest::Test
     trie.insert("Cat")
 
     node = trie.root.get_end_nodes[0]
-    assert_equal "cat", node.to_s
+    assert_equal "Cat", node.to_s
   end
 
 end

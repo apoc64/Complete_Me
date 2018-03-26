@@ -19,7 +19,6 @@ class CompleteMe
     node
   end
 
-
   def include_word?(word, node = @root)
     nodes = node.get_end_nodes
     all_words = nodes.map do |end_node|
@@ -69,4 +68,5 @@ class CompleteMe
     end
     possible_words = all_words.find_all {|word| word.index(substring) == 0 }
   end
+  
 end

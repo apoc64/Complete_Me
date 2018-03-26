@@ -22,8 +22,6 @@ class CompleteMeTest < Minitest::Test
     assert_equal 'r', actual.character
     assert_equal 'bear', actual.to_s
     assert_nil complete_me.find('hyena')
-
-
   end
 
   def test_include_word?
@@ -38,7 +36,6 @@ class CompleteMeTest < Minitest::Test
     assert complete_me.include_word?("cat")
     assert complete_me.include_word?("cattle")
     refute complete_me.include_word?('something')
-
   end
 
   def test_it_inserts
@@ -47,7 +44,6 @@ class CompleteMeTest < Minitest::Test
     complete_me.insert(word)
     # binding.pry
     assert complete_me.include_word?(word)
-
     word = "pharoh"
     complete_me.insert(word)
     word = "police"
@@ -172,16 +168,16 @@ class CompleteMeTest < Minitest::Test
     cm = CompleteMe.new
     file = "dog\ncat\nbear\nmonkey\ncattle\ncattles"
     cm.populate(file)
-
-    assert_equal ['cat', 'cattle', 'cattles'], cm.suggest('ca')
     cm.select('ca', 'cattle')
     cm.select('ca', 'cattle')
-
     assert_equal ['cattle', 'cat', 'cattles'], cm.suggest('ca')
     # binding.pry
     cm.select('cat', 'cattles')
     assert_equal ['cattles', 'cattle', 'cat'], cm.suggest('cat')
     assert_equal ['cattle', 'cattles', 'cat'], cm.suggest('ca')
+    cm.select('cat', 'cat')
+    cm.select('cat', 'cat')
+    assert_equal ['cat', 'cattles', 'cattle'], cm.suggest('cat')
   end
 
 end

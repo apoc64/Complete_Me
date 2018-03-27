@@ -102,12 +102,9 @@ class CompleteMe
   def delete(word)
     node = find(word)
     return nil if node.nil? || !node.is_end
-
     node.is_end = false
     return 0 if node.get_end_nodes.count > 0
-
     delete_parent_nodes(node.parent, node)
-
   end
 
   def delete_parent_nodes(node, child)

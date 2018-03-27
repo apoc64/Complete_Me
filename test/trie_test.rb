@@ -105,7 +105,7 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_sorts_suggestions_by_weight
-    # skip
+    skip
     complete_me = CompleteMe.new
     file = "dog\ncat\nmonkey\ncattle\ncattles"
     complete_me.populate(file)
@@ -129,7 +129,7 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_accurately_counts_the_number_of_words_in_a_trie
-    # skip
+    skip
     trie = CompleteMe.new
     assert_equal 0, trie.count
 
@@ -208,6 +208,21 @@ class CompleteMeTest < Minitest::Test
     cm.delete("dog")
     assert_equal 3, cm.root.children.count
     assert_equal 3, cm.count
+  end
+
+  def test_it_can_parse_csv
+    cm = CompleteMe.new
+    addresses = cm.parse("addresses.csv")
+    assert_equal "1776 Curtis St Unit 2803", addresses[0]
+  end
+
+  def test_it_adds_addresses_to_dictionary
+    cm = CompleteMe.new
+    addresses = cm.parse("addresses.csv")
+    cm.insert_words(addresses)
+
+    assert cm.include_word?("3085 W Virginia Ave")
+    refute cm.include_word?("1234545667 N Hollywood Blvd")
   end
 
 end

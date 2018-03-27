@@ -1,6 +1,6 @@
 require_relative '../lib/node.rb'
 require 'csv'
-
+require 'pry'
 class CompleteMe
   attr_reader :root
   def initialize
@@ -24,15 +24,6 @@ class CompleteMe
     node = find(word)
     return false if node.nil?
     return node.is_end
-    # nodes = node.get_end_nodes
-    # all_words = nodes.map do |end_node|
-    #   end_node.to_s
-    # end
-    # if all_words.include?(word.downcase)
-    #   return true
-    # else
-    #   return false
-    # end
   end
 
   def insert(word, node = @root)

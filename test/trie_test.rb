@@ -211,13 +211,9 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_can_parse_csv
-
-    # csv = File.read("../addresses.csv")
     cm = CompleteMe.new
     addresses = cm.parse("addresses.csv")
-    # binding.pry
-    assert_equal addresses[0], "1776 Curtis St Unit 2803"
-
+    assert_equal "1776 Curtis St Unit 2803", addresses[0]
   end
 
 end

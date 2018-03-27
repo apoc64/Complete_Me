@@ -119,10 +119,12 @@ class CompleteMe
   end
 
   def parse(csv)
+    addresses = []
     CSV.foreach(csv) do |row|
-
+      addresses << row[20]
     end
-    ["hello"]
+    addresses.delete_at(0)
+    addresses
   end
 
 end

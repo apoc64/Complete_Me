@@ -117,7 +117,6 @@ class CompleteMe
     return 2 if node.get_end_nodes.count > 0
     delete_parent_nodes(node.parent, node)
   end
-
   def parse(csv)
     addresses = []
     CSV.foreach(csv) do |row|

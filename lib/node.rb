@@ -5,7 +5,7 @@ class Node
   attr_accessor :is_end,
                 :weight,
                 :suggestions,
-                :children 
+                :children
 
   def initialize(character = "", parent = nil, is_end = false)
     @character = character

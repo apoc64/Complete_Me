@@ -105,7 +105,7 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_sorts_suggestions_by_weight
-    skip
+    # skip
     complete_me = CompleteMe.new
     file = "dog\ncat\nmonkey\ncattle\ncattles"
     complete_me.populate(file)
@@ -129,7 +129,7 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_accurately_counts_the_number_of_words_in_a_trie
-    skip
+    # skip
     trie = CompleteMe.new
     assert_equal 0, trie.count
 

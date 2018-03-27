@@ -1,8 +1,10 @@
+require_relative "../lib/complete_me" # for populating test data
+require 'simplecov'
+SimpleCov.start
 require_relative "../lib/node"
 require 'pry'
 require "Minitest/autorun"
 require "Minitest/pride"
-require_relative "../lib/complete_me" #for populating test data
 
 class NodeTest < MiniTest::Test
   def setup

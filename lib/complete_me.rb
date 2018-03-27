@@ -68,7 +68,7 @@ class CompleteMe
       nodes << node
     end
     sorted_nodes = sort_nodes(nodes, node.suggestions)
-    all_words = sorted_nodes.map do |end_node|
+    sorted_nodes.map do |end_node|
       end_node.to_s
     end
   end

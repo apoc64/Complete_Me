@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require_relative "../lib/complete_me"
 require 'pry'
 require "Minitest/autorun"

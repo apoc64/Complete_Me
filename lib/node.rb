@@ -19,7 +19,7 @@ class Node
 
   def insert(character, is_end = false)
     character = character
-    if children_dont_have_character(character)
+    if find_child_node(character).nil?
       node = Node.new(character, self, is_end)
       @children << node
     elsif is_end
@@ -28,14 +28,6 @@ class Node
       node = find_child_node(character)
     end
     node
-  end
-
-  def children_dont_have_character(character)
-    if find_child_node(character).nil?
-      return true
-    else
-      return false
-    end
   end
 
   def change_node_is_end(character)

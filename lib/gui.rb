@@ -13,17 +13,15 @@ Shoes.app do
       @user_input = edit_line
       @clear_button = button 'clear'
       @user_input.change do
-        @results.replace(cm.suggest(@user_input.text).join(', '))
+        @results.replace(cm.suggest(@user_input.text).join(", "))
       end
       @clear_button.click do
-        @user_input.clear
+        @user_input.text("")
       end
     end
 
 
-    every 2 do
-      @results = para ''
-    end
+    @results = para ''
 
 
 

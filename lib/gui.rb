@@ -14,6 +14,13 @@ Shoes.app do
       @clear_button = button 'clear'
       @user_input.change do
         @results.replace(cm.suggest(@user_input.text)[0..9].join(", "))
+        flow do
+          @possibilities = @results.split(', ')
+          button(@results)
+          @possibilities.each do |possible_word|
+            @selection_buttons = button(possible_word.text)
+          end
+        end
       end
       @clear_button.click do
         @results.replace ""

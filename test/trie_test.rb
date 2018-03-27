@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require_relative "../lib/complete_me"
 require 'pry'
 require "Minitest/autorun"
@@ -209,5 +211,4 @@ class CompleteMeTest < Minitest::Test
     assert_equal 3, cm.root.children.count
     assert_equal 3, cm.count
   end
-
 end

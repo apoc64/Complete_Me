@@ -210,4 +210,13 @@ class CompleteMeTest < Minitest::Test
     assert_equal 3, cm.count
   end
 
+  def test_it_can_parse_csv
+
+    csv = File.read("~/turing/1module/projects/complete_me_project/address.csv")
+
+    addresses = parse(csv)
+    assert_equal addresses[0], "1776 Curtis St Unit 2803"
+
+  end
+
 end

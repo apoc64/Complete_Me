@@ -13,10 +13,11 @@ Shoes.app do
       @user_input = edit_line
       @clear_button = button 'clear'
       @user_input.change do
-        @results.replace(cm.suggest(@user_input.text).join(", "))
+        @results.replace(cm.suggest(@user_input.text)[0..9].join(", "))
       end
       @clear_button.click do
-        @user_input.text("")
+        @results.replace ""
+        @user_input.text = ""
       end
     end
 

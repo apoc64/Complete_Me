@@ -29,3 +29,18 @@ words = cm.suggest("xqpv")
 suggest_time = Time.new - suggest_time
 # puts words
 puts "Zqpv Suggest Time: #{suggest_time} seconds"
+
+mid_string_suggest_time = Time.new
+words = cm.mid_string_suggest("attl")
+mid_string_suggest_time = Time.new - mid_string_suggest_time
+puts "attl Mid String Suggest Time: #{mid_string_suggest_time} seconds"
+
+mid_string_suggest_time = Time.new
+words = cm.mid_string_suggest("ohe")
+mid_string_suggest_time = Time.new - mid_string_suggest_time
+puts "ohe Mid String Suggest Time: #{mid_string_suggest_time} seconds"
+
+mid_string_suggest_time = Time.new
+words = cm.mid_string_suggest("tool")
+mid_string_suggest_time = Time.new - mid_string_suggest_time
+puts "tool Mid String Suggest Time: #{mid_string_suggest_time} seconds"

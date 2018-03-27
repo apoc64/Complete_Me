@@ -21,15 +21,18 @@ class CompleteMe
   end
 
   def include_word?(word, node = @root)
-    nodes = node.get_end_nodes
-    all_words = nodes.map do |end_node|
-      end_node.to_s
-    end
-    if all_words.include?(word.downcase)
-      return true
-    else
-      return false
-    end
+    node = find(word)
+    return false if node.nil?
+    return node.is_end
+    # nodes = node.get_end_nodes
+    # all_words = nodes.map do |end_node|
+    #   end_node.to_s
+    # end
+    # if all_words.include?(word.downcase)
+    #   return true
+    # else
+    #   return false
+    # end
   end
 
   def insert(word, node = @root)
@@ -99,5 +102,19 @@ class CompleteMe
     end
   end
 
+  def delete(word)
+    node = find(word)
+    return nil if node.nil? || !node.is_end
+    node.is_end = false
+    return 0 if node.get_end_nodes.count > 0
+    delete_parent_nodes(node.parent, node)
+  end
+
+  def delete_parent_nodes(node, child)
+    node.children.delete(child)
+    return 1 if node.is_end
+    return 2 if node.get_end_nodes.count > 0
+    delete_parent_nodes(node.parent, node)
+  end
 
 end

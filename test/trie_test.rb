@@ -105,7 +105,7 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_sorts_suggestions_by_weight
-    skip
+    # skip
     complete_me = CompleteMe.new
     file = "dog\ncat\nmonkey\ncattle\ncattles"
     complete_me.populate(file)
@@ -129,7 +129,7 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_accurately_counts_the_number_of_words_in_a_trie
-    skip
+    # skip
     trie = CompleteMe.new
     assert_equal 0, trie.count
 
@@ -178,6 +178,36 @@ class CompleteMeTest < Minitest::Test
     cm.select('cat', 'cat')
     cm.select('cat', 'cat')
     assert_equal ['cat', 'cattles', 'cattle'], cm.suggest('cat')
+  end
+
+  def test_it_can_delete_words
+    cm = CompleteMe.new
+    file = "dog\ncat\nbear\nmonkey\ncattle\ncattles"
+    cm.populate(file)
+    assert cm.include_word?("cattle")
+    assert cm.include_word?("dog")
+    assert 6, cm.count
+    cm.delete("evrevervre")
+    assert_equal 6, cm.count
+    cm.delete("cats")
+    assert_equal 6, cm.count
+
+    cm.delete("cattle")
+    refute cm.include_word?("cattle")
+    assert cm.include_word?("cattles")
+    assert_equal 5, cm.count
+
+    node = cm.find("cat")
+    assert_equal 1, node.children.count
+    cm.delete("cattles")
+    refute cm.include_word?("cattles")
+    assert cm.include_word?("cat")
+    assert_equal 0, node.children.count
+
+    assert_equal 4, cm.root.children.count
+    cm.delete("dog")
+    assert_equal 3, cm.root.children.count
+    assert_equal 3, cm.count
   end
 
 end

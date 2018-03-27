@@ -1,11 +1,11 @@
 class Node
-  attr_reader :children,
-              :character,
+  attr_reader :character,
               :parent
 
   attr_accessor :is_end,
                 :weight,
-                :suggestions
+                :suggestions,
+                :children 
 
   def initialize(character = "", parent = nil, is_end = false)
     @character = character

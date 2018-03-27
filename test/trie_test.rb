@@ -189,15 +189,18 @@ class CompleteMeTest < Minitest::Test
     assert 6, cm.count
     cm.delete("evrevervre")
     assert_equal 6, cm.count
+    cm.delete("cats")
+    assert_equal 6, cm.count
 
     cm.delete("cattle")
     refute cm.include_word?("cattle")
     assert cm.include_word?("cattles")
+    assert_equal 5, cm.count
 
     node = cm.find("cat")
     assert_equal 1, node.children.count
     cm.delete("cattles")
-    retute cm.include_word("cattles")
+    refute cm.include_word?("cattles")
     assert cm.include_word?("cat")
     assert_equal 0, node.children.count
 

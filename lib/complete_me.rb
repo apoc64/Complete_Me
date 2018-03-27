@@ -1,5 +1,6 @@
 require 'pry'
 require_relative '../lib/node.rb'
+require 'csv'
 
 class CompleteMe
   attr_reader :root
@@ -115,6 +116,13 @@ class CompleteMe
     return 1 if node.is_end
     return 2 if node.get_end_nodes.count > 0
     delete_parent_nodes(node.parent, node)
+  end
+
+  def parse(csv)
+    CSV.foreach(csv) do |row|
+
+    end
+    ["hello"]
   end
 
 end

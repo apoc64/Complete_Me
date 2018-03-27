@@ -1,19 +1,43 @@
 require_relative 'complete_me'
 cm = CompleteMe.new
-
 Shoes.app do
-  stack do
-    edit_box.change do |user_input|
-      input = user_input.split(" ")
-      @input_word = input[-1]
-      para = cm.suggest(@input_word)
-    end
-  end 
-  #   list_box items: ['/usr/share/dict/words'],
-  #     choose: '/usr/share/dict/words' do
-  #       @dictionary = File.read(@file_path.text)
-  #       cm.populate(@dictionary)
-  #     end
+  # stack do
+  #   flow do
+  #     @input = edit_line :width => 400
   #   end
-  # end
+
+
+  stack(margin: 20) do
+    para 'Enter a Substring'
+    flow do
+      @user_input = edit_line
+      @clear_button = button 'clear'
+      @user_input.change do
+        @results.replace(cm.suggest(@user_input.text).join(', '))
+      end
+      @clear_button.click do
+        @user_input.clear
+      end
+    end
+
+
+    every 2 do
+      @results = para ''
+    end
+
+
+
+
+
+    para 'Import'
+    flow do
+      @file_path = edit_line('/usr/share/dict/words')
+      @import = button 'Import'
+      @import.click do
+        dictionary = File.read(@file_path.text)
+        cm.populate(dictionary)
+        @feedback.replace('Imported')
+      end
+    end
+  end
 end

@@ -9,11 +9,10 @@ Shoes.app do
 
   stack(margin: 20) do
     para 'Enter a Substring'
-
     flow do
       @user_input = edit_line
       @clear_button = button 'clear'
-      @select_button = button 'select'
+      @select_button = button 'Select Word'
       @user_input.change do
         @results.replace(cm.suggest(@user_input.text)[0..9].join(', '))
       end
@@ -21,6 +20,13 @@ Shoes.app do
         @results.replace ""
         @user_input.text = ""
         hide(@choices)
+      end
+      @select_button.click do
+        substring = @user_input
+        @top.replace(cm.suggest(@user_input.text)[0])
+        string = @top.text
+        cm.select(substring, string)
+        @user_input.replace(@top.text)
       end
     end
 

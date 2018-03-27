@@ -216,4 +216,13 @@ class CompleteMeTest < Minitest::Test
     assert_equal "1776 Curtis St Unit 2803", addresses[0]
   end
 
+  def test_it_adds_addresses_to_dictionary
+    cm = CompleteMe.new
+    addresses = cm.parse("addresses.csv")
+    cm.insert_words(addresses)
+
+    assert cm.include_word?("3085 W Virginia Ave")
+    refute cm.include_word?("1234545667 N Hollywood Blvd")
+  end
+
 end

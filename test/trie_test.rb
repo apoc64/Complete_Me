@@ -180,4 +180,31 @@ class CompleteMeTest < Minitest::Test
     assert_equal ['cat', 'cattles', 'cattle'], cm.suggest('cat')
   end
 
+  def test_it_can_delete_words
+    cm = CompleteMe.new
+    file = "dog\ncat\nbear\nmonkey\ncattle\ncattles"
+    cm.populate(file)
+    assert cm.include_word?("cattle")
+    assert cm.include_word?("dog")
+    assert 6, cm.count
+    cm.delete("evrevervre")
+    assert_equal 6, cm.count
+
+    cm.delete("cattle")
+    refute cm.include_word?("cattle")
+    assert cm.include_word?("cattles")
+
+    node = cm.find("cat")
+    assert_equal 1, node.children.count
+    cm.delete("cattles")
+    retute cm.include_word("cattles")
+    assert cm.include_word?("cat")
+    assert_equal 0, node.children.count
+
+    assert_equal 4, cm.root.children.count
+    cm.delete("dog")
+    assert_equal 3, cm.root.children.count
+    assert_equal 3, cm.count
+  end
+
 end

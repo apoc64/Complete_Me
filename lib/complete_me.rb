@@ -99,5 +99,9 @@ class CompleteMe
     end
   end
 
+  def delete(word)
+
+  end
+
 
 end

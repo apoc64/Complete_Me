@@ -19,7 +19,7 @@ class Node
 
   def insert(character, is_end = false)
     character = character
-    if find_child_node(character).nil?(character)
+    if find_child_node(character).nil?
       node = Node.new(character, self, is_end)
       @children << node
     elsif is_end

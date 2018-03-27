@@ -1,6 +1,6 @@
 require 'pry'
 require_relative '../lib/node.rb'
-require 'CSV'
+require 'csv'
 
 class CompleteMe
   attr_reader :root

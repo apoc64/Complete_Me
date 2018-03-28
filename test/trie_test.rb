@@ -131,7 +131,7 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_accurately_counts_the_number_of_words_in_a_trie
-    skip
+    # skip
     trie = CompleteMe.new
     assert_equal 0, trie.count
 
@@ -213,14 +213,14 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_can_parse_csv
-    skip
+    # skip
     cm = CompleteMe.new
     addresses = cm.parse("addresses.csv")
     assert_equal "1776 Curtis St Unit 2803", addresses[0]
   end
 
   def test_it_adds_addresses_to_dictionary
-    skip
+    # skip
     cm = CompleteMe.new
     addresses = cm.parse("addresses.csv")
     cm.insert_words(addresses)

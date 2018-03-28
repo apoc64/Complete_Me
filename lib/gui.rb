@@ -6,7 +6,6 @@ Shoes.app do
     flow do
       @user_input = edit_line
       @clear_button = button 'clear'
-      @select_button = button 'Select Word'
       @user_input.change do
         @results.replace(cm.suggest(@user_input.text)[0..9].join(', '))
       end
@@ -18,6 +17,7 @@ Shoes.app do
     end
 
     @results = para ''
+    @button = button(@results.text)
 
     para 'Import (This may take a few seconds)'
     flow do

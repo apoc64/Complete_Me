@@ -116,4 +116,38 @@ class CompleteMe
     addresses
   end
 
+  def mid_string_suggest(substring)
+    nodes = get_mid_string_nodes(substring)
+    # binding.pry
+    end_nodes = []
+    nodes.each do |node|
+      end_nodes += node.get_end_nodes
+    end
+    # binding.pry
+    words = end_nodes.map do |end_node|
+      end_node.to_s
+    end
+    words
+  end
+
+    def get_mid_string_nodes(substring, node = @root)
+      # binding.pry
+      nodes = []
+      node.children.each do |child|
+        if child.character == substring[0]
+          if substring.length == 1
+            nodes << child
+          else
+            substring[0] = ""
+            nodes += get_mid_string_nodes(substring, child)
+          end
+        else
+          nodes += get_mid_string_nodes(substring, child)
+        end
+      end
+      nodes
+    end
+
+
+
 end

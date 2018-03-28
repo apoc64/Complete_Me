@@ -44,7 +44,6 @@ class CompleteMeTest < Minitest::Test
     complete_me = CompleteMe.new
     word = "phrase"
     complete_me.insert(word)
-    # binding.pry
     assert complete_me.include_word?(word)
     word = "pharoh"
     complete_me.insert(word)
@@ -107,7 +106,6 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_sorts_suggestions_by_weight
-
     complete_me = CompleteMe.new
     file = "dog\ncat\nmonkey\ncattle\ncattles"
     complete_me.populate(file)
@@ -125,13 +123,12 @@ class CompleteMeTest < Minitest::Test
     complete_me.insert('cats')
 
     assert_equal ['cattles', 'cattle', 'cat', 'cats'], complete_me.suggest('ca')
-    # binding.pry
     cattles.weight = 0
     assert_equal ['cattle', 'cat', 'cats', 'cattles'], complete_me.suggest('ca')
   end
 
   def test_it_accurately_counts_the_number_of_words_in_a_trie
-    skip
+    # skip
     trie = CompleteMe.new
     assert_equal 0, trie.count
 
@@ -151,7 +148,6 @@ class CompleteMeTest < Minitest::Test
     whole_dict = CompleteMe.new
     dict_count = 235886
     whole_dict.populate(File.read("/usr/share/dict/words"))
-    # binding.pry
     assert_equal dict_count, whole_dict.count
   end
 
@@ -173,7 +169,6 @@ class CompleteMeTest < Minitest::Test
     cm.select('ca', 'cattle')
     cm.select('ca', 'cattle')
     assert_equal ['cattle', 'cat', 'cattles'], cm.suggest('ca')
-    # binding.pry
     cm.select('cat', 'cattles')
     assert_equal ['cattles', 'cattle', 'cat'], cm.suggest('cat')
     assert_equal ['cattle', 'cattles', 'cat'], cm.suggest('ca')
@@ -213,14 +208,14 @@ class CompleteMeTest < Minitest::Test
   end
 
   def test_it_can_parse_csv
-    skip
+    # skip
     cm = CompleteMe.new
     addresses = cm.parse("addresses.csv")
     assert_equal "1776 Curtis St Unit 2803", addresses[0]
   end
 
   def test_it_adds_addresses_to_dictionary
-    skip
+    # skip
     cm = CompleteMe.new
     addresses = cm.parse("addresses.csv")
     cm.insert_words(addresses)
@@ -236,7 +231,6 @@ class CompleteMeTest < Minitest::Test
 
     suggestions = cm.mid_string_suggest("ttl")
     assert_equal ["cattle", "cattles"], suggestions
-
   end
 
 end

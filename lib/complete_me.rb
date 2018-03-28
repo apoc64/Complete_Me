@@ -95,18 +95,19 @@ class CompleteMe
 
   def delete(word)
     node = find(word)
-    return nil if node.nil? || !node.is_end
+    return if node.nil? || !node.is_end
     node.is_end = false
-    return 0 if node.get_end_nodes.count > 0
+    return if node.get_end_nodes.count > 0
     delete_parent_nodes(node.parent, node)
   end
 
   def delete_parent_nodes(node, child)
     node.children.delete(child)
-    return 1 if node.is_end
-    return 2 if node.get_end_nodes.count > 0
+    return if node.is_end
+    return if node.get_end_nodes.count > 0
     delete_parent_nodes(node.parent, node)
   end
+
   def parse(csv)
     addresses = []
     CSV.foreach(csv) do |row|
@@ -118,12 +119,10 @@ class CompleteMe
 
   def mid_string_suggest(substring)
     nodes = get_mid_string_nodes(substring)
-    # binding.pry
     end_nodes = []
     nodes.each do |node|
       end_nodes += node.get_end_nodes
     end
-    # binding.pry
     words = end_nodes.map do |end_node|
       end_node.to_s
     end
@@ -131,7 +130,6 @@ class CompleteMe
   end
 
     def get_mid_string_nodes(substring, node = @root)
-      # binding.pry
       nodes = []
       node.children.each do |child|
         if child.character == substring[0]
@@ -147,7 +145,5 @@ class CompleteMe
       end
       nodes
     end
-
-
 
 end

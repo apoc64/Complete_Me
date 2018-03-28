@@ -17,7 +17,6 @@ class NodeTest < MiniTest::Test
 
   def test_it_can_insert
     node = Node.new
-
     node.insert("A")
     actual = node.children[0].character
     assert_equal "A", actual
@@ -145,7 +144,6 @@ class NodeTest < MiniTest::Test
     node7 = node4.insert("t")
     node8 = node7.insert("l")
     node9 = node8.insert("e", true)
-    # binding.pry
     end_nodes = node.get_end_nodes
     expected = [node4, node9, node5, node6]
     assert_equal expected, end_nodes
